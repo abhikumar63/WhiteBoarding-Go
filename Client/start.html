@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whiteboarding</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <nav id="navbar">
+    <div id="appName">Whiteboarding</div>
+    <div id="roomCodeDisplay">xx-xx-xx</div>
+    <button id="leaveRoomBtn" onclick="leaveRoom()" style="display: none;">Leave Room</button>
+  </nav>
+
+  <!-- Page 1: Create/Join Room -->
+  <div id="page1" class="page">
+    <h1>Welcome to the Collaborative Whiteboard</h1>
+    <div>
+      <button onclick="showCreateRoomForm()">Create Room</button>
+      <button onclick="showJoinRoomForm()">Join Room</button>
+    </div>
+    <form id="createRoomForm" style="display: none;" onsubmit="return createRoom(event)">
+      <label for="createRoomName">Room Name: </label>
+      <input type="text" id="createRoomName" required>
+      <button type="submit">Create</button>
+    </form>
+    <form id="joinRoomForm" style="display: none;" onsubmit="return joinRoomWithCreatedCode(event)">
+      <label for="joinRoomCode">Room Code:</label>
+      <input type="text" id="joinRoomCode" required>
+      <button type="submit">Join</button>
+    </form>
+    <div id="errorMessage" class="error-message"></div>
+  </div>
+
+  <!-- <div id="toolbar">
+    <input type="text" id="joinRoomCodeInput" placeholder="Enter Room Code">
+    <button onclick="joinRoom()">Join Room</button><br>
+    <button onclick="showCreateRoomForm()">Create Room</button>
+    <span id="roomInfo"></span>
+  </div>
+
+  <div id="createRoomForm" style="display: none;">
+    <label>Room Name: <input type="text" id="roomNameInput"></label>
+    <button onclick="createRoom()">Create and Join</button>
+    <div class="error-message" id="roomNameError" style="display: none;"><p>Room Name is required!</p></div>
+    <span id="roomCodeDisplay" readonly></span>
+  </div> -->
+
+  <!-- <h2 id="roomNameDisplay"></h2>
+  <canvas id="canvas" width="800" height="600"></canvas> -->
+
+  <!-- Page 2: Room Info -->
+  <div id="page2" class="page" style="display: none;">
+    <h2>Room Information</h2>
+    <p id="roomInfo"></p>
+    <!-- <button onclick="enterRoom()">Play</button> -->
+    <div id="startHeading"> 
+      <h3>Press "Play" button to get started!</h3>
+    </div>
+    <input type="submit" onClick="joinRoom()" value="Play" class="button-3" />
+  </div>
+
+  <!-- Page 3: Canvas -->
+  <div class="container" id="canvasRoom" style="display: none;">
+    <section class="tools-board">
+      <div class="row">
+        <label class="title">Shapes</label>
+        <ul class="options">
+          <li class="option tool" id="rectangle">
+            <img src="icons/rectangle.svg" alt="">
+            <span>Rectangle</span>
+          </li>
+          <li class="option tool" id="circle">
+            <img src="icons/circle.svg" alt="">
+            <span>Circle</span>
+          </li>
+          <li class="option tool" id="triangle">
+            <img src="icons/triangle.svg" alt="">
+            <span>Triangle</span>
+          </li>
+          <li class="option">
+            <input type="checkbox" id="fill-color">
+            <label for="fill-color">Fill color</label>
+          </li>
+        </ul>
+      </div>
+      <div class="row">
+        <label class="title">Options</label>
+        <ul class="options">
+          <li class="option active tool" id="brush">
+            <img src="icons/brush.svg" alt="">
+            <span>Brush</span>
+          </li>
+          <li class="option tool" id="eraser">
+            <img src="icons/eraser.svg" alt="">
+            <span>Eraser</span>
+          </li>
+          <li class="option">
+            <input type="range" id="size-slider" min="1" max="30" value="5">
+          </li>
+        </ul>
+      </div>
+      <div class="row colors">
+        <label class="title">Colors</label>
+        <ul class="options">
+          <li class="option"></li>
+          <li class="option selected"></li>
+          <li class="option"></li>
+          <li class="option"></li>
+          <li class="option">
+            <input type="color" id="color-picker" value="#4A98F7">
+          </li>
+        </ul>
+      </div>
+      <div class="row buttons">
+        <button class="clear-canvas">Clear Canvas</button>
+        <button class="save-img">Save As Image</button>
+      </div>
+    </section>
+    <section class="drawing-board">
+      <canvas></canvas>
+    </section>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
